@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registration Form</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">  
+<style>
+body {
+	background-image: url('/static/images/gr3.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: ;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    margin-top: 150px;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s; /* added transition for smooth scaling */
+}
+
+.container:hover {
+    transform: scale(1.05); /* increase size when hovered */
+}
+
+h2 {
+    text-align: center; /* Center align the text */
+    margin-bottom: 20px;
+    position: relative; /* Added relative positioning */
+    display: inline-block; /* Make the text inline-block */
+    width: 100%; /* Set the width to 100% */
+}
+
+h2:hover::after {
+    content: '';
+    position: absolute;
+    width: 40%; 
+    height: 2px;
+    background-color: #4d7f17; /* Color of the underline */
+    bottom: -10px; /* Adjust the position of the underline */
+    left: 30%;
+    display: block; /* Display as block to span the width of the text */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: #4d7f17; /* Green color */
+    border-color: #4d7f17; /* Match border color with background color */
+}
+
+.bottom {
+    text-align: center;
+}
+
+.bottom a {
+    color: #4d7f17; /* Green color */
+    text-decoration: none;
+    position: relative; /* Added relative positioning */
+}
+
+.bottom a:hover::after {
+    content: '';
+    position: absolute;
+    width: 100%; /* Make the underline span the width of the link */
+    height: 2px;
+    background-color: #4d7f17; /* Color of the underline */
+    bottom: -5px; /* Adjust the position of the underline */
+    left: 0;
+}
+</style>            
+</head>
+<body>
+<div class="container">
+    <h2>Registration</h2>
+    <form action="{{ url_for('register') }}" method="post">
+        {% if message is defined and message %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" name="pswd">
+        </div>    
+        <button type="submit" class="btn btn-primary">Register</button>
+        <p class="bottom">Already have an account? <a href="{{url_for('login')}}">Login here</a></p>
+    </form>
+</div>        
+</body>
+</html>

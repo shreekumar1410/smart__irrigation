@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="{{ url_for('static', filename='images/fevicon.png') }}" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>WEED DETECTION</title>
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet" />
+  <!-- font awesome style -->
+  <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet" />
+
+
+  <style>
+    .long_section {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .navbar-brand span {
+      font-size: 24px;
+      font-weight: 700;
+      color: #272727;
+      text-transform: uppercase;
+      padding-left: 100px;
+    }
+    
+    .box-content {
+        margin: 5px 10px;
+        padding: 10px 5px;
+    }
+    .box-content #inp{
+      color: inherit;
+      width: 50%;
+      background-color: transparent;
+      padding-left: 1.5rem;
+      font-size: 15px;
+      margin: 10px 25%;
+    }
+    #image-file-input,
+    #video-file-input {
+        padding: 10px 5px;
+    }
+    #image-preview,
+    #video-preview {
+        display: block;
+        width: 50%;
+        overflow: hidden; /* Hide overflow */
+        border: 0px solid #ccc; /* Add border for clarity */
+        margin: 20px auto; /* Add some space between previews */
+    }
+    #image-preview img{
+        height: 350px;
+        max-width: 100%; /* Ensure content doesn't exceed container width */
+        max-height: 100%; /* Ensure content doesn't exceed container height */
+    }
+    #video-preview video {
+        height: 300px;
+        max-width: 100%; /* Ensure content doesn't exceed container width */
+        max-height: 100%; /* Ensure content doesn't exceed container height */
+    }
+    .blog_section {
+      background-color: #f8f9fa; /* Light gray background */
+      padding: 50px 0; /* Add padding to top and bottom */
+  }
+  
+  .blog_section {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 50px 0; /* Add padding to top and bottom */
+}
+
+.blog_section .heading_container h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #4d7f17; /* Dark green heading color */
+    text-align: center;
+    margin-bottom: 30px; /* Add margin at the bottom */
+}
+
+.blog_section .header {
+    text-align: center; /* Center-align the header */
+    margin-bottom: 30px; /* Add margin at the bottom */
+}
+
+.blog_section .header a {
+    color: #4d7f17; /* Dark green link color */
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px; /* Add margin between links */
+}
+
+.blog_section .header a:hover {
+    color: #336633; /* Darker green link color on hover */
+}
+
+.blog_section .box {
+    background-color: #ffffff; /* White background for box */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Add box shadow */
+}
+
+.blog_section .box-content {
+    margin: 10px auto;
+    text-align: center;
+}
+
+
+.blog_section .inp {
+  color: white;
+  background-color: #4d7f17; /* Dark green button background */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px; /* Add margin to top */
+  width: 50%;
+}
+
+.blog_section .inp:hover {
+    background-color: #336633; /* Darker green button background on hover */
+}
+
+.blog_section #image input[type="submit"] {
+    color: white;
+    background-color: #4d7f17; /* Dark green button background */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px; /* Add margin to top */
+}
+
+.blog_section #image input[type="submit"]:hover {
+    background-color: #336633; /* Darker green button background on hover */
+}
+.blog_section .header a:hover {
+  color: #336633; /* Darker green link color on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+
+  
+</style>
+
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section long_section px-0">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="{{ url_for('home') }}">
+          <span>
+            WEED DETECTION
+          </span>
+        </a>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('redirect_to_thingspeak') }}">Sensors Values</a>
+              </li>
+              <!--<li class="nav-item">
+                <a class="nav-link" href="{{ url_for('weather') }}">Weather</a>
+              </li>-->
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('weed_detection') }}">Weed Detection</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- end header section -->
+  </div>
+
+
+  <!-- blog section -->
+
+  <section class="blog_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Weed Detection
+        </h2>
+      </div>
+      <div>
+        <div class="">
+          <div class="header">
+              <a href="#image">Image</a> || <a href="#video">Video</a>
+          </div>
+          <div class="box">
+            <section id="image" >
+              <div class="box-content">
+                  <h1>Image Section</h1>
+                  <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                    <!-- Input field for uploading image -->
+                    <input type="file" id="image-file-input" name="file" accept="image/*">
+                    <input type="submit" value="Upload" id="inp">
+                  </form>
+                  <!-- Div for previewing the uploaded image -->
+                  <div id="image-preview"></div>
+              </div>
+          </section>
+          <section id="video" style="display:none">
+              <div class="box-content">
+                  <h1>Video Section</h1>
+                  <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                    <!-- Input field for uploading video -->
+                    <input type="file" id="video-file-input" name="file" accept="video/*">
+                    <input type="submit" value="Upload" class="inp">
+                  </form>
+                  <!-- Div for previewing the uploaded video -->
+                  <div id="video-preview"></div>
+              </div>
+          </section>
+          <!-- JavaScript -->
+          <script>
+              // Selecting necessary elements
+              var sec1 = document.querySelector('#image');
+              var sec2 = document.querySelector('#video');
+              var imageFileInput = document.getElementById('image-file-input');
+              var videoFileInput = document.getElementById('video-file-input');
+              var imagePreview = document.getElementById('image-preview');
+              var videoPreview = document.getElementById('video-preview');
+          
+              // Event listener for the header to toggle sections
+              document.querySelector('.header').addEventListener('click', function(e) {
+                  var target = e.target;
+                  if (target.nodeName == 'A') {
+                      if (target.hash == '#image') {
+                          sec1.style.display = 'block';
+                          sec2.style.display = 'none';
+                      } else if (target.hash == '#video') {
+                          sec1.style.display = 'none';
+                          sec2.style.display = 'block';
+                      }
+                  }
+              });
+
+              
+              // // Event listener for image file input change
+              // imageFileInput.addEventListener('change', function(event) {
+              //     var file = event.target.files[0];
+              //     if (file) {
+              //         var reader = new FileReader();
+              //         reader.onload = function(event) {
+              //             var img = new Image();
+              //             img.src = event.target.result;
+              //             // Clear previous content and display uploaded image
+              //             imagePreview.innerHTML = '';
+              //             imagePreview.appendChild(img);
+              //         };
+              //         reader.readAsDataURL(file); // Read the file as data URL
+              //     }
+              // });
+          
+              // // Event listener for video file input change
+              // videoFileInput.addEventListener('change', function(event) {
+              //     var file = event.target.files[0];
+              //     if (file) {
+              //         var video = document.createElement('video');
+              //         video.src = URL.createObjectURL(file); // Set video source
+              //         video.controls = true; // Show video controls
+              //         // Clear previous content and display uploaded video
+              //         videoPreview.innerHTML = '';
+              //         videoPreview.appendChild(video);
+              //     }
+              // });
+          </script>
+          
+      </div>
+      
+      </div>
+    </div>
+  </section>
+
+  <!-- end blog section -->
+  <section class="info_section long_section">
+  <!-- info section
+  
+
+    <div class="container">
+      <div class="contact_nav">
+        <a href="">
+          <i class="fa fa-phone" aria-hidden="true"></i>
+          <span>
+            Call : +01 123455678990
+          </span>
+        </a>
+        <a href="">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <span>
+            Email : demo@gmail.com
+          </span>
+        </a>
+        <a href="">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          <span>
+            Location
+          </span>
+        </a>
+      </div>
+
+      <div class="info_top ">
+        <div class="row ">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 mx-auto">
+            <div class="info_post">
+              <h5>
+                INSTAGRAM FEEDS
+              </h5>
+              <div class="post_box">
+                <div class="img-box">
+                  <img src="{{ url_for('static', filename='images/f1.png') }}" alt="">
+                </div>
+                <div class="img-box">
+                  <img src="{{ url_for('static', filename='images/f2.png') }}" alt="">
+                </div>
+                <div class="img-box">
+                  <img src="{{ url_for('static', filename='images/f3.png') }}" alt="">
+                </div>
+                <div class="img-box">
+                  <img src="{{ url_for('static', filename='images/f4.png') }}" alt="">
+                </div>
+                <div class="img-box">
+                  <img src="{{ url_for('static', filename='images/f5.png') }}" alt="">
+                </div>
+                <div class="img-box">
+                  <img src="{{ url_for('static', filename='images/f6.png') }}" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="info_form">
+              <h4>
+                SIGN UP TO OUR NEWSLETTER
+              </h4>
+              <form action="">
+                <input type="text" placeholder="Enter Your Email" />
+                <button type="submit">
+                  Subscribe
+                </button>
+              </form>
+              <div class="social_box">
+                <a href="">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="">
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+                <a href="">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  end info_section -->
+</section>
+
+
+  <!-- footer section
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a>
+      </p>
+    </div>
+  </footer>
+  footer section -->
+
+
+  <!-- jQery -->
+  <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+  <!-- bootstrap js -->
+  <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  <!-- custom js -->
+  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+  <!-- End Google Map -->
+
+</body>
+
+</html>
